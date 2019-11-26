@@ -14,74 +14,340 @@
     </div>
 </div>
 
-<div class="container mt-auto">
+<div class="container-fluid bg-light-gray mt-5 pb-5">
 
-    <form action="/" method="GET" style="margin: 20px;width:30%;">
-        <select name="category" class="form-control"> 
-            <option value="all">All</option>
-            <option value="Thief">Thief</option>
-            <option value="Warrior">Warrior</option>
-            <option value="Tank">Tank</option>
-            <option value="Mage">Mage</option>
-            <option value="SoulWaver">Soul Waver</option>
-        </select>
-        <input type="submit" class="btn btn-primary" value="Filter" style="margin-left:110px;margin-top:5px;width:30%">
-    </form>
+    <div class="container pt-5">
 
-    <!-- <%
-        if(products.length === 0) {%>
-            <div class="alert alert-danger">
-                There is no products
-            </div>
+        <form class="form-inline" action="/" method="GET">
+            <select name="category" class="form-control" style="height: 34px">
+                <option value="all">All</option>
+                <option value="Thief">Thief</option>
+                <option value="Warrior">Warrior</option>
+                <option value="Tank">Tank</option>
+                <option value="Mage">Mage</option>
+                <option value="SoulWaver">Soul Waver</option>
+            </select>&nbsp;
+            <input type="submit" class="form-control mr-sm-2" value="Filter">
+            <button class="btn btn-outline-warning my-2 my-sm-0"><a href="/">---> BACK <---</a></button>
+        </form>
+        <div class="row">
+            <h3>ALL PRODUCTS TOP</h3>
+        </div>
+        <div class="row">
+            <div class="underline"></div>
+        </div>
+    </div>
 
-            <%}
-            else
-            {
-
-            }
-    %> -->
-
-    <div class="row">
-        <% for(let product of products) { %>
-
-        <!-- <div class="col col-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card" style="width: 18rem;">
-                <img src="<%= product.image%>" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="/product/<%=product._id%>"><%=product.name%></a>
-                        <p>Price: <%= product.price%></p>
-                    </h5>
-                    <form action="/cart">
-                        <input type="number" name="amount" class="form-control">
-                        <input type="submit" name="Add to cart" class="btn btn-primary">
-                    </form>
-                </div>
-            </div>
-        </div> -->
-
-
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="<%= product.image%>" alt="..." class="img-responsive" style="max-height: 200px">
-                <div class="caption">
-                    <h3><a href="/product/<%=product._id%>"><%=product.name%></a></h3>
-                    <p class="description"><%=product.description%></p>
-                    <div class="clearfix">
-                        <div class="price pull-left">
-                            <p>Price: $<%= product.price%></p>
+    <% if(products.length === 0) {%>
+        <div class="alert alert-danger">
+            there is no products
+        </div>
+    <% } else {%> 
+        <div class="container mt-5">
+            <div class="row">
+                <%  for(let product of products) {
+                        if (product.category == "Thief"){   %>
+                <div class="col-md-3">
+                    <div class="card">
+                       <a href="/product/<%= product._id%>"><img src="<%= product.image%>" alt="card-1" class="card-img-top"></a>
+                        <div class="card-body">
+                            <a href="/product/<%= product._id%>"><h5><%= product.name%></h5></a>
+                            <h6 class="price"><%= product.price%> $</h6>
+                            <h6 class="description"><%= product.description%></h6>
+                            <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To
+                                Cart</button>
                         </div>
-                        <form action="/cart">
-                            <input type="number" name="amount" class="form-control">
-                            <input type="submit" value="Add to cart" class="btn btn-primary"
-                                style="margin-top:5px;margin-left: 65px;">
-                        </form>
+                    </div>
+                </div>
+                <% }
+            } %>
+            </div>
+        </div>
+    <% }%>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <% for(let product of products) if (product.category == "Warrior"){%>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="<%= product.image%>" alt="card-1" class="card-img-top" style="height:;">
+                    <div class="card-body">
+                        <h5><%= product.name%></h5>
+                        <h6 class="price"><%= product.price%> $</h6>
+                        <h6 class="description"><%= product.description%></h6>
+                        <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To
+                            Cart</button>
                     </div>
                 </div>
             </div>
+            <% } %>
         </div>
-        <% } %>
+    </div>
+
+</div>
+<div class="container-fluid pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>MOST WANTED</h4>
+                </div>
+                <div class="row">
+                    <div class="underline-green"></div>
+                </div>
+                <% for(let product of products) {
+                    if (product.category == "Warrior") { %>
+                <div class="media mt-5">
+                    <img src="<%= product.image%>" class="img-fluid mr-3" alt="media1">
+                    <div class="media-body mt-2">
+                        <h5>FITT Belts</h5>
+                        <h6>$35.00</h6>
+                        <button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To
+                            Cart</button>
+                    </div>
+                </div>
+                <% } } %>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>SCARFS</h4>
+                </div>
+                <div class="row">
+                    <div class="underline-blue"></div>
+                </div>
+                <% for(let product of products) {
+                    if (product.category == "SoulWaver") { %>
+                <div class="media mt-5">
+                    <img src="<%= product.image%>" class="img-fluid mr-3" alt="media1">
+                    <div class="media-body mt-2">
+                        <h5>Istwic Scarf</h5>
+                        <h6>$23.00</h6>
+                        <button class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To
+                            Cart</button>
+                    </div>
+                </div>
+                <% } } %>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>ON SALE</h4>
+                </div>
+                <div class="row">
+                    <div class="underline-black"></div>
+                </div>
+                <% for(let product of products) {
+                    if (product.category == "Mage") { %>
+                <div class="media mt-5">
+                    <img src="<%= product.image%>" class="img-fluid mr-3" alt="media1">
+                    <div class="media-body mt-2">
+                        <h5>Marina Style</h5>
+                        <h6>$46.00</h6>
+                        <button class="btn btn-dark"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To
+                            Cart</button>
+                    </div>
+                </div>
+                <% } } %>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
+<div class="container-fluid bg-light-gray pt-5 pb-5">
+
+<div class="container mt-0">
+	<div class="row">
+		<h4>FEATURED</h4>
+	</div>
+	<div class="row">
+		<div class="underline"></div>
+	</div>
+</div>
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="card">
+				<img src="img/pexels-photo-220449.jpeg" class="card-img-top">
+				<div class="card-body">
+					<h4>Black Shirt</h4>
+					<h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<div class="card">
+				<img src="img/pexels-photo-731794.jpeg" class="card-img-top">
+				<div class="card-body">
+					<h4>Black Shirt</h4>
+					<h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<div class="card">
+				<img src="img/pexels-photo-301279.jpeg" class="card-img-top">
+				<div class="card-body">
+					<h4>Black Shirt</h4>
+					<h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<div class="card">
+				<img src="img/pexels-photo-245931.jpeg" class="card-img-top">
+				<div class="card-body">
+					<h4>Black Shirt</h4>
+					<h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+
+
+
+<div class="container mt-5">
+	<div class="row">
+		<h4>FROM THE BLOG</h4>
+	</div>
+	<div class="underline"></div>
+</div>
+
+<div class="container pb-5 blog">
+ <div class="row">
+ 	<div class="col-md-6">
+ 		<div class="media mt-5">
+					<img src="img/b1.jpg" class="img-fluid mr-3" alt="media1">
+					<div class="media-body mt-2">
+						<h5>Jackets For The Soul. What…</h5>
+						<p>Lorem ipsum dolor sit amet.</p>
+						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
+					</div>
+				</div>
+ 	</div>
+ 	
+ 	
+ 	<div class="col-md-6">
+ 		<div class="media mt-5">
+					<img src="img/b2.jpg" class="img-fluid mr-3" alt="media1">
+					<div class="media-body mt-2">
+						<h5>Long Legs? No Longer And…</h5>
+						<p>Lorem ipsum dolor sit amet.</p>
+						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
+					</div>
+				</div>
+ 	</div>
+ </div>
+ 
+ 
+  <div class="row">
+ 	<div class="col-md-6">
+ 		<div class="media mt-5">
+					<img src="img/b3.jpg" class="img-fluid mr-3" alt="media1">
+					<div class="media-body mt-2">
+						<h5>Latest Trends For Autumn Are…</h5>
+						<p>Lorem ipsum dolor sit amet.</p>
+						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
+					</div>
+				</div>
+ 	</div>
+ 	
+ 	
+ 	<div class="col-md-6">
+ 		<div class="media mt-5">
+					<img src="img/b4.jpg" class="img-fluid mr-3" alt="media1">
+					<div class="media-body mt-2">
+						<h5>Best Fabrics For Your Dream…</h5>
+						<p>Lorem ipsum dolor sit amet.</p>
+						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
+					</div>
+				</div>
+ 	</div>
+ </div>
+	
+</div>
+
+<div class="container-fluid pt-5 pb-5 bg-light-gray">
+	<div class="container">
+		<div class="row">
+			<h4>TRENDS</h4>
+		</div>
+		<div class="row">
+			<div class="underline-blue"></div>
+		</div>
+	</div>
+	
+	<div class="container pt-5">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="card">
+				  <img src="img/pexels-photo-247206.jpeg" alt="img" class="card-img-top">
+					<div class="card-body">
+					  <h4>Denim Shirt</h4>
+					  <h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="card">
+				  <img src="img/pexels-photo-206454.jpeg" alt="img" class="card-img-top">
+					<div class="card-body">
+					  <h4>White Net</h4>
+					  <h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="card">
+				  <img src="img/pexels-photo-245931.jpeg" alt="img" class="card-img-top">
+					<div class="card-body">
+					  <h4>Purple Bra</h4>
+					  <h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="card">
+				  <img src="img/pexels-photo-206381.jpeg" alt="img" class="card-img-top">
+					<div class="card-body">
+					  <h4>Blue Skart</h4>
+					  <h6>$67.87</h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 
 <%- include('partials/footer')%>

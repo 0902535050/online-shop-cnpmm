@@ -1,0 +1,42 @@
+<%- include('partials/header')%>
+<%- include('partials/navbar')%>
+<link rel="stylesheet" href="/stylesheets/signup.css">
+
+<div class="container register-form" style="margin-top:30px;">
+    <div class="form">
+        <div class="note">
+            <p>Create your account</p>
+        </div>
+
+        <div class="form-content">
+            <form action="/signup" method="POST">
+                <div class="row">
+                        <div class="col-md-6">
+                                <div class="form-group">
+                                    <img src="../stylesheets/logo-user-animation.gif" style="width: 80%;">
+                                </div>                    
+                            </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name *" name="username" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-mail *" name="email" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" name="password" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Confirm Password *"
+                                name="confirmPassword" />
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Create Account" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<%- include('partials/footer')%>

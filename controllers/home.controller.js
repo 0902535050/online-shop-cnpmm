@@ -12,7 +12,7 @@ exports.getHome = (req, res, next) => {
     let category = req.query.category;
     let productsPromise
     let validCategories = ['Warrior','Tank','Thief','Mage','SoulWaver']
-    if (category && validCategories !== "all"){
+    if (category && validCategories.includes(category)){
         productsPromise = productsModel.getProductsByCategory(category);
     }
     else{
